@@ -14,12 +14,17 @@ public class Cities {
 
 			Statement statement = (Statement) con.createStatement();
 		 
-			String query = "LOAD DATA LOCAL INFILE '"+filename+"' INTO TABLE cities  FIELDS" + 
-					 " TERMINATED BY ';' (Code_commune_INSEE, Nom_commune, Code_postal, Libelle_acheminement, Ligne_5, coordonnes_gps)";
+			String queryCleanTable = "TRUNCATE cities;";
+						
+			statement.executeUpdate(queryCleanTable);
+			System.out.println("Query TRUNCATE Table OK !");
 			
-			ResultSet resultSet = statement.executeQuery(query);
-			System.out.println("Query OK !");
-			resultSet.close();
+			String queryAddCities = "LOAD DATA LOCAL INFILE '"+filename+"' INTO TABLE cities  FIELDS" + 
+					 " TERMINATED BY ';' IGNORE 1 LINES (Code_commune_INSEE, Nom_commune, Code_postal, Libelle_acheminement, Ligne_5, coordonnes_gps)";
+
+			statement.executeQuery(queryAddCities);
+			System.out.println("Query LOAD DATA from CVS file OK !");
+
 			statement.close();
 		    
 		} catch (SQLException e) {

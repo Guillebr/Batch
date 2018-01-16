@@ -1,6 +1,5 @@
 package com.Batch;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.jdbc.Connection;

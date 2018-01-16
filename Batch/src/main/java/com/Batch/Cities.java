@@ -11,7 +11,7 @@ public class Cities {
 	public static void addCities(String filename){
 		try {
 			Connection con = (Connection) JDBCConfiguration.getConnection();
-			//Connection con = JDBCConfigurationSol1.getConnection();
+
 			Statement statement = (Statement) con.createStatement();
 		 
 			String query = "LOAD DATA LOCAL INFILE '"+filename+"' INTO TABLE cities  FIELDS" + 
